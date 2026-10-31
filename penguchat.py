@@ -317,7 +317,7 @@ class MainWindow(QMainWindow):
             AUTOSTART_FILE.parent.mkdir(parents=True, exist_ok=True)
             AUTOSTART_FILE.write_text(
                 "[Desktop Entry]\nType=Application\n"
-                f"Name={APP_NAME}\nIcon={APP_ID}\nExec={APP_CMD} --hidden\n"
+                f'Name={APP_NAME}\nIcon={APP_ID}\nExec="{sys.executable}" "{Path(__file__).resolve()}" --hidden\n'
                 "X-GNOME-Autostart-enabled=true\n")
         else:
             AUTOSTART_FILE.unlink(missing_ok=True)

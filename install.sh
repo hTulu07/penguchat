@@ -43,7 +43,10 @@ mkdir -p "$PREFIX/bin"
 printf '#!/bin/sh\nexec "%s" "%s" "$@"\n' "$PYTHON" "$LIB/penguchat.py" > "$PREFIX/bin/penguchat"
 chmod 755 "$PREFIX/bin/penguchat"
 install -Dm644 "data/$APP_ID.svg"          "$PREFIX/share/icons/hicolor/scalable/apps/$APP_ID.svg"
-install -Dm644 "data/$APP_ID.desktop"      "$PREFIX/share/applications/$APP_ID.desktop"
+# Absolute path: the desktop session's PATH often lacks ~/.local/bin.
+sed "s|^Exec=penguchat|Exec=$PREFIX/bin/penguchat|" "data/$APP_ID.desktop" > "$APP_ID.desktop.tmp"
+install -Dm644 "$APP_ID.desktop.tmp"       "$PREFIX/share/applications/$APP_ID.desktop"
+rm -f "$APP_ID.desktop.tmp"
 install -Dm644 "data/$APP_ID.metainfo.xml" "$PREFIX/share/metainfo/$APP_ID.metainfo.xml"
 
 gtk-update-icon-cache -q "$PREFIX/share/icons/hicolor" 2>/dev/null || true
