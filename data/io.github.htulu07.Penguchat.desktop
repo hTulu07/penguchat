@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Name=Penguchat
+GenericName=WhatsApp Client
+Comment=WhatsApp Web as a native Linux desktop app
+Exec=penguchat
+Icon=io.github.htulu07.Penguchat
+Terminal=false
+Categories=Network;InstantMessaging;Chat;Qt;
+Keywords=whatsapp;chat;messenger;message;
+StartupWMClass=penguchat
+StartupNotify=true
+SingleMainWindow=true
+Actions=Hidden;
+
+[Desktop Action Hidden]
+Name=Start in tray
+Exec=penguchat --hidden

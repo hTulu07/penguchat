@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.htulu07.Penguchat</id>
+  <name>Penguchat</name>
+  <summary>WhatsApp Web as a native Linux desktop app</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <developer id="io.github.htulu07">
+    <name>Huseyin Tulu</name>
+  </developer>
+  <description>
+    <p>Penguchat is a small, unofficial desktop app for WhatsApp Web. It uses your system Qt,
+    so it fits in with your desktop instead of shipping a whole Electron browser.</p>
+    <ul>
+      <li>Stays logged in</li>
+      <li>Native desktop notifications with the sender's picture</li>
+      <li>Tray icon and task bar badge with the unread count</li>
+      <li>Close to tray and start at login</li>
+      <li>Links open in your default browser</li>
+    </ul>
+    <p>Penguchat is not affiliated with WhatsApp or Meta.</p>
+  </description>
+  <launchable type="desktop-id">io.github.htulu07.Penguchat.desktop</launchable>
+  <url type="homepage">https://github.com/hTulu07/penguchat</url>
+  <url type="bugtracker">https://github.com/hTulu07/penguchat/issues</url>
+  <provides>
+    <binary>penguchat</binary>
+  </provides>
+  <categories>
+    <category>Network</category>
+    <category>InstantMessaging</category>
+  </categories>
+  <content_rating type="oars-1.1">
+    <content_attribute id="social-chat">intense</content_attribute>
+    <content_attribute id="social-audio">intense</content_attribute>
+  </content_rating>
+  <releases>
+    <release version="1.0.0" date="2026-10-31"/>
+  </releases>
+</component>
