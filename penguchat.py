@@ -16,10 +16,11 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QMenu, QSystemTrayIcon
 APP_ID = "io.github.htulu07.Penguchat"  # desktop file, icon and Wayland app id
 APP_CMD = "penguchat"                    # command, data folders and settings
 APP_NAME = "Penguchat"
-VERSION = "1.0.0"
+VERSION = "1.1.0"
 HOME_URL = QUrl("https://web.whatsapp.com/")
 AUTOSTART_FILE = Path.home() / ".config/autostart" / f"{APP_ID}.desktop"
 SOCKET_NAME = f"{APP_CMD}-instance"
+IN_FLATPAK = Path("/.flatpak-info").exists()
 
 NOTIFY_SERVICE = "org.freedesktop.Notifications"
 NOTIFY_PATH = "/org/freedesktop/Notifications"
@@ -191,7 +192,8 @@ class MainWindow(QMainWindow):
         menu.addSeparator()
         self.close_to_tray_action = self.check_action(menu, "Close to tray", "close_to_tray", True)
         self.autostart_action = QAction("Start at login", menu, checkable=True)
-        self.autostart_action.setChecked(AUTOSTART_FILE.exists())
+        self.autostart_action.setChecked(
+            self.settings.value("autostart", False, type=bool) if IN_FLATPAK else AUTOSTART_FILE.exists())
         self.autostart_action.toggled.connect(self.set_autostart)
         menu.addAction(self.autostart_action)
         menu.addSeparator()
@@ -300,7 +302,18 @@ class MainWindow(QMainWindow):
         self.settings.setValue("zoom", factor)
 
     def set_autostart(self, on):
-        if on:
+        if IN_FLATPAK:
+            # The sandbox can't write ~/.config/autostart, so ask the Background portal.
+            msg = QDBusMessage.createMethodCall("org.freedesktop.portal.Desktop", "/org/freedesktop/portal/desktop",
+                                                "org.freedesktop.portal.Background", "RequestBackground")
+            msg.setArguments(["", {
+                "reason": f"Start {APP_NAME} at login",
+                "autostart": on,
+                "commandline": QDBusArgument([APP_CMD, "--hidden"], QMetaType.Type.QStringList.value),
+            }])
+            QDBusConnection.sessionBus().asyncCall(msg)
+            self.settings.setValue("autostart", on)
+        elif on:
             AUTOSTART_FILE.parent.mkdir(parents=True, exist_ok=True)
             AUTOSTART_FILE.write_text(
                 "[Desktop Entry]\nType=Application\n"

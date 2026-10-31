@@ -11,6 +11,8 @@ Penguchat wraps [WhatsApp Web](https://web.whatsapp.com) in a lightweight PyQt6 
 With your distro's Qt packages it uses your system Qt, so it follows your theme, window decorations
 and notifications instead of shipping a whole Electron browser.
 
+<p align="center"><img src="screenshots/login.png" width="720" alt="Penguchat window"></p>
+
 ## Features
 
 - **Stays logged in**: your session is kept in its own profile (`~/.local/share/penguchat`)
@@ -24,6 +26,28 @@ and notifications instead of shipping a whole Electron browser.
 - Remembers window size and zoom level
 
 ## Install
+
+### Flatpak (any distro)
+
+Download `penguchat.flatpak` from the [latest release](https://github.com/hTulu07/penguchat/releases/latest), then:
+
+```bash
+flatpak install --user penguchat.flatpak
+flatpak run io.github.htulu07.Penguchat
+```
+
+It pulls the KDE runtime from Flathub the first time, so Flathub must be set up
+([setup guide](https://flathub.org/setup)).
+
+### Arch Linux (AUR)
+
+```bash
+yay -S penguchat
+```
+
+Or build it yourself from this repo: `cd packaging/aur && makepkg -si`
+
+### From source
 
 ```bash
 git clone https://github.com/hTulu07/penguchat.git
