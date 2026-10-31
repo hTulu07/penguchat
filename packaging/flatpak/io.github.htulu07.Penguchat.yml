@@ -31,3 +31,4 @@ modules:
       - type: git
         url: https://github.com/hTulu07/penguchat.git
         tag: v1.1.0
+        commit: edf3bb1c85445a64f195b7e2fb8ee3eb46f135e0

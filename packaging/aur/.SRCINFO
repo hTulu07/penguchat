@@ -1,0 +1,14 @@
+pkgbase = penguchat
+	pkgdesc = A small, native-feeling WhatsApp Web desktop app for Linux
+	pkgver = 1.1.0
+	pkgrel = 1
+	url = https://github.com/hTulu07/penguchat
+	arch = any
+	license = MIT
+	depends = python
+	depends = python-pyqt6
+	depends = python-pyqt6-webengine
+	source = penguchat-1.1.0.tar.gz::https://github.com/hTulu07/penguchat/archive/refs/tags/v1.1.0.tar.gz
+	sha256sums = cbd9bc3dea28458ff54852061d643231b0b7c94fffa882fa5d26cf1c54559b6d
+
+pkgname = penguchat

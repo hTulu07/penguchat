@@ -8,7 +8,7 @@ url="https://github.com/hTulu07/penguchat"
 license=('MIT')
 depends=('python' 'python-pyqt6' 'python-pyqt6-webengine')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
-sha256sums=('SKIP')
+sha256sums=('cbd9bc3dea28458ff54852061d643231b0b7c94fffa882fa5d26cf1c54559b6d')
 
 package() {
   cd "$pkgname-$pkgver"
